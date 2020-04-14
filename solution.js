@@ -6,7 +6,8 @@
     Tip: Use console.log() to print result  
 */
 
-console.log(document.querySelector("li"));
+let firstListItem = document.querySelector("li");
+console.log(firstListItem.innerText);
 
 /* 1.2) Add a full-stop at the end of each item in all the bucket lists.
     Hint 1: Select All <li> elements.
@@ -41,7 +42,7 @@ gandalfList.querySelector("li").style.color = "red";
 
 let frodoList = document.querySelector("#frodo-list ul");
 let newItem = document.createElement("li");
-newItem.innerText = "Sail Off with the Elves";
+newItem.innerText = "Sail Off with the Elves.";
 frodoList.append(newItem);
 
 /* 1.5) Remove the first item from Frodo's bucket list.
@@ -59,31 +60,47 @@ firstItem.remove();
     Hint 2: use  .children 
 */
 
-
+let gandalfDiv = document.querySelector("#gandalf-list");
+console.log(gandalfDiv);
+console.log(gandalfDiv.children);
 
 /* 2.2) Print the first child of the div with id="frodo-list" */
 
+let frodoDiv = document.querySelector("#frodo-list");
+console.log(frodoDiv);
+console.log(frodoDiv.firstElementChild);
 
 /* 2.3) Print the last child of the div with id="gandalf-list" */ 
 
+console.log(gandalfDiv.lastElementChild);
 
 /* 2.4) Print the 2nd last child of the div with id="gandalf-list" 
     Hint 1: First select the last child as you did in Part 2.3
-    Hint 2: Then use  .previousElementSibling to get the 2nd last child
+    Hint 2: Then use .previousElementSibling to get the 2nd last child
 */ 
 
+let lastChild = gandalfDiv.lastElementChild;
+let secondLastChild = lastChild.previousElementSibling;
+console.log(secondLastChild);
 
 /* 2.4) Find the parent element of the div with id="frodo-list" */
 
-
-
+console.log(frodoDiv.parentElement);
 
 ////////////// BONUS /////////////////////
 /*  Find out the person who has 'Become White Wizard.' in their bucket list 
     
     Hint 1: You will need to select all <li> elements
-    Hint 2: Use .textContent   and === 
+    Hint 2: Use .textContent and === 
     Hint 3: Use .parentElement (You are looking to find the grandparent actually)
 */
 
-
+let allListItems = document.querySelectorAll("li");
+for (i = 0; i < allListItems.length; i++) {
+    if (allListItems[i].textContent === "Become White Wizard.") {
+        let parent = allListItems[i].parentElement;
+        let grandparent = parent.parentElement;
+        let bucketList = grandparent.firstElementChild.innerText;
+        console.log(`Become White Wizard is on ${bucketList}`);
+    }
+}
